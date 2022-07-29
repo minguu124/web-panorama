@@ -7,6 +7,7 @@ import { Viewer } from "photo-sphere-viewer";
 import { MarkersPlugin } from "photo-sphere-viewer/dist/plugins/markers";
 import { VirtualTourPlugin } from "photo-sphere-viewer/dist/plugins/virtual-tour";
 import { CompassPlugin } from "photo-sphere-viewer/dist/plugins/compass";
+import { CubemapAdapter } from "photo-sphere-viewer/dist/adapters/cubemap.js";
 import "photo-sphere-viewer/dist/photo-sphere-viewer.css";
 import "photo-sphere-viewer/dist/plugins/markers.css";
 import "photo-sphere-viewer/dist/plugins/virtual-tour.css";
@@ -36,6 +37,7 @@ export default {
       container: document.querySelector("#viewer"),
       defaultLat: -0.5,
       defaultLong: 1.6,
+      adapter: CubemapAdapter,
       plugins: [
         MarkersPlugin,
         [CompassPlugin, { position: "top right" }],
@@ -48,7 +50,14 @@ export default {
             nodes: [
               {
                 id: "view_chinh_du_an",
-                panorama: "/360_view_chinh_du_an.jpg",
+                panorama: [
+                  "/360_view_chinh_du_an_nx.jpg",
+                  "/360_view_chinh_du_an_ny.jpg",
+                  "/360_view_chinh_du_an_nz.jpg",
+                  "/360_view_chinh_du_an_px.jpg",
+                  "/360_view_chinh_du_an_py.jpg",
+                  "/360_view_chinh_du_an_pz.jpg",
+                ],
                 thumbnail: "/thumb_view_chinh_du_an.jpg",
                 links: [
                   {
