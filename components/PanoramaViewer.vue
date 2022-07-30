@@ -57,7 +57,7 @@ export default {
                     latitude: "-12deg",
                     markerStyle: {
                       scale: [1, 1.5, 2],
-                      html: '<div class="marker"><div class="marker-stick"><div class="marker-bubble"><img class="marker-bubble-img" src="/thumb_view_biet_thu.jpg"}/></div><div class="marker-label">View biệt thự</div></div></div>',
+                      html: '<div class="marker"><div class="marker-stick"><div class="marker-bubble"><img class="marker-bubble-img" src="/icon_view_biet_thu.jpg"}/></div><div class="marker-label">View biệt thự</div></div></div>',
                     },
                   },
                   {
@@ -66,7 +66,7 @@ export default {
                     latitude: "-33.5deg",
                     markerStyle: {
                       scale: [1, 1.5, 2],
-                      html: '<div class="marker"><div class="marker-stick"><div class="marker-bubble"><img class="marker-bubble-img" src="/thumb_view_phu_du_an.jpg"}/></div><div class="marker-label">View phụ dự án</div></div></div>',
+                      html: '<div class="marker"><div class="marker-stick"><div class="marker-bubble"><img class="marker-bubble-img" src="/icon_view_phu_du_an.jpg"}/></div><div class="marker-label">View phụ dự án</div></div></div>',
                     },
                   },
                 ],
