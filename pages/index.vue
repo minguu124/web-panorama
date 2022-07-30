@@ -1,17 +1,12 @@
 <template>
   <div id="app">
-    <PanoramaViewer
-      ref="panoramaViewer"
-      :currentView="this.selectedView"
-      :onHotspotClick="this.onHotspotClick"
-    />
+    <PanoramaViewer ref="panoramaViewer" :currentView="this.selectedView" />
     <ActionController
       :data="this.data"
       :currentGroup="this.selectedGroup"
       :currentView="this.selectedView"
       :onChangeGroup="this.onChangeGroup"
       :onChangeView="this.onChangeView"
-      :onFullscreen="this.onFullscreen"
     />
   </div>
 </template>
@@ -34,16 +29,6 @@ export default {
     onChangeView(view) {
       this.selectedView = view;
     },
-
-    onHotspotClick(id) {
-      console.log(id);
-      const items = JSON.parse(JSON.stringify(this.selectedGroup.items));
-      const selected = items.find((x) => x.id === id);
-      if (selected) {
-        this.selectedView = selected;
-      }
-    },
-    onFullscreen() {},
   },
   data() {
     return {

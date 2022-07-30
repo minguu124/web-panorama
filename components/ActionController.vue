@@ -26,9 +26,6 @@
         <i class="material-icons md-36">cameraswitch</i>
       </button>
       <button class="btn">
-        <i class="material-icons md-36">play_arrow</i>
-      </button>
-      <button class="btn">
         <i class="material-icons md-36">volume_up</i>
       </button>
     </div>
@@ -46,19 +43,34 @@ export default {
       this.selectedImage = value;
       this.onChangeImageAction(value);
     },
+    onFullscreen() {
+      const elem = this.container;
+      if (elem.requestFullscreen) {
+        elem.requestFullscreen();
+      } else if (elem.webkitRequestFullscreen) {
+        /* Safari */
+        elem.webkitRequestFullscreen();
+      } else if (elem.msRequestFullscreen) {
+        /* IE11 */
+        elem.msRequestFullscreen();
+      }
+    },
   },
   data() {
-    return {};
+    return {
+      container: undefined,
+    };
   },
   props: {
     data: Object,
-    onFullscreen: Function,
     currentGroup: Object,
     currentView: Object,
     onChangeGroup: Function,
     onChangeView: Function,
   },
-  mounted() {},
+  mounted() {
+    this.container = document.getElementById("app");
+  },
 };
 </script>
 
@@ -73,7 +85,7 @@ export default {
   left: 50%;
   transform: translate(-50%);
   flex-direction: column;
-  z-index: 1000;
+  z-index: 10;
   border: 2px solid burlywood;
   border-radius: 4px;
 }
@@ -83,6 +95,7 @@ export default {
   border: 0;
   color: #fff;
   font-size: 24px;
+  margin: 0px 8px;
 }
 img {
   width: 20%;

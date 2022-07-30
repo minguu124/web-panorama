@@ -16,7 +16,6 @@ export default {
   expose: ["viewer"],
   props: {
     currentView: Object,
-    onHotspotClick: Function,
   },
   watch: {
     currentView: function (newVal, prevVal) {
@@ -57,7 +56,16 @@ export default {
                     latitude: "-12deg",
                     markerStyle: {
                       scale: [1, 1.5, 2],
-                      html: '<div class="marker"><div class="marker-stick"><div class="marker-bubble"><img class="marker-bubble-img" src="/icon_view_biet_thu.jpg"}/></div><div class="marker-label">View biệt thự</div></div></div>',
+                      html: `
+                      <div class="marker">
+                        <div class="marker-stick">
+                          <div class="marker-bubble">
+                            <img class="marker-bubble-img" src="/icon_view_biet_thu.jpg"}/>
+                          </div>
+                          <div class="marker-label">View biệt thự</div>
+                        </div>
+                      </div>
+                      `,
                     },
                   },
                   {
@@ -66,7 +74,51 @@ export default {
                     latitude: "-33.5deg",
                     markerStyle: {
                       scale: [1, 1.5, 2],
-                      html: '<div class="marker"><div class="marker-stick"><div class="marker-bubble"><img class="marker-bubble-img" src="/icon_view_phu_du_an.jpg"}/></div><div class="marker-label">View phụ dự án</div></div></div>',
+                      html: `
+                      <div class="marker">
+                        <div class="marker-stick">
+                          <div class="marker-bubble">
+                            <img class="marker-bubble-img" src="/icon_view_phu_du_an.jpg"}/>
+                          </div>
+                          <div class="marker-label">View phụ dự án</div>
+                        </div>
+                      </div>`,
+                    },
+                  },
+                  {
+                    nodeId: "trung_tam_vinh_long",
+                    longitude: "100deg",
+                    latitude: "-33.5deg",
+                    markerStyle: {
+                      scale: [1, 1.5, 2],
+                      html: `
+                      <div class="marker"><div class="marker-stick">
+                        <div class="marker-banner">
+                          <div class="marker-banner-icon">
+                            <i class="material-icons md-36">expand_circle_down</i>
+                          </div>
+                          <div class="marker-banner-label">Trung tâm Vĩnh Long</div>
+                        </div>
+                      </div>
+                      `,
+                    },
+                  },
+                  {
+                    nodeId: "cau_my_thuan",
+                    longitude: "0deg",
+                    latitude: "-33.5deg",
+                    markerStyle: {
+                      scale: [1, 1.5, 2],
+                      html: `
+                        <div class="marker"><div class="marker-stick">
+                        <div class="marker-banner">
+                          <div class="marker-banner-icon">
+                            <i class="material-icons md-36">expand_circle_down</i>
+                          </div>
+                          <div class="marker-banner-label">Cầu Mỹ Thuận</div>
+                        </div>
+                      </div>
+                      `,
                     },
                   },
                 ],
@@ -186,5 +238,27 @@ export default {
   color: rgb(238, 170, 16);
   border-radius: 16px;
   font-weight: bold;
+}
+
+.marker-banner {
+  display: flex;
+  position: absolute;
+  transform: translateX(-50%);
+}
+
+.marker-banner-icon {
+  background-color: darkred;
+  padding: 4px;
+}
+
+.marker-banner-label {
+  background-color: #fff;
+  padding: 4px 8px;
+  width: max-content;
+  color: darkred;
+}
+
+i {
+  color: #fff;
 }
 </style>
