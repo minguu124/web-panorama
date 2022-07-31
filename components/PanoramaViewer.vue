@@ -40,6 +40,10 @@ export default {
   },
   beforeMount() {
     this.$img("/360_view_chinh_du_an.jpg", this.options);
+    this.$img("/360_view_phu_du_an.jpg", this.options);
+    this.$img("/360_view_biet_thu.jpg", this.options);
+    this.$img("/360_cau_my_thuan.jpg", this.options);
+    this.$img("/360_trung_tam_vinh_long.jpg", this.options);
   },
   mounted() {
     this.viewer = new Viewer({
