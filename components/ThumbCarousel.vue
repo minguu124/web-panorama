@@ -8,7 +8,7 @@
         class="carousel-item"
         :class="{ active: item.id === selected?.id }"
       >
-        <nuxt-img v-bind:src="item.imgThumb" class="carousel-item-image" />
+        <img v-bind:src="item.imgThumb" class="carousel-item-image" />
         <div>{{ item.label }}</div>
       </li>
     </ul>
