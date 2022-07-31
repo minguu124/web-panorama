@@ -38,6 +38,9 @@ export default {
       },
     };
   },
+  beforeMount() {
+    this.$img("/360_view_chinh_du_an.jpg", this.options);
+  },
   mounted() {
     this.viewer = new Viewer({
       container: document.querySelector("#viewer"),
