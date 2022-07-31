@@ -1,10 +1,12 @@
 <template>
   <div class="navbar">
-    <ThumbCarousel
-      :items="this.currentGroup.items"
-      :selected="this.currentView"
-      :onChange="this.onChangeView"
-    />
+    <div class="carousel_container">
+      <ThumbCarousel
+        :items="this.currentGroup.items"
+        :selected="this.currentView"
+        :onChange="this.onChangeView"
+      />
+    </div>
     <div class="action">
       <button @click="this.onFullscreen" class="btn">
         <i class="material-icons md-36">aspect_ratio</i>
@@ -12,7 +14,7 @@
       <button class="btn">
         <i class="material-icons md-36">expand_circle_down</i>
       </button>
-      <div style="flex: 1; justify-content: space-around">
+      <div class="menu_button_container">
         <button
           class="menu_button"
           v-for="item in data"
@@ -86,8 +88,18 @@ export default {
   transform: translate(-50%);
   flex-direction: column;
   z-index: 10;
-  border: 2px solid burlywood;
   border-radius: 4px;
+}
+
+.carousel_container {
+  border: 1px solid burlywood;
+  /* display: none; */
+}
+
+.menu_button_container {
+  flex: 1;
+  padding: 0 8px;
+  justify-content: space-between;
 }
 
 .btn {
@@ -103,11 +115,11 @@ img {
 }
 
 .menu_button {
-  flex: 0.3;
   text-align: center;
   vertical-align: middle;
   border: 1px solid #fff;
-  aspect-ratio: 5/1;
+  height: 100%;
+  width: 30%;
   font-weight: 600;
   font-size: 14px;
   background-color: lightgrey;
@@ -118,9 +130,7 @@ img {
 }
 
 .action {
-  align-items: center;
-  justify-content: space-around;
   padding: 16px;
-  border-top: 2px solid burlywood;
+  border: 1px solid burlywood;
 }
 </style>

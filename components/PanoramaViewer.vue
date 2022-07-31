@@ -47,8 +47,7 @@ export default {
             nodes: [
               {
                 id: "view_chinh_du_an",
-                panorama: "/360_view_chinh_du_an.jpg",
-                thumbnail: "/thumb_view_chinh_du_an.jpg",
+                panorama: require("/assets/360_view_chinh_du_an.jpg"),
                 links: [
                   {
                     nodeId: "view_biet_thu",
@@ -60,7 +59,7 @@ export default {
                       <div class="marker">
                         <div class="marker-stick">
                           <div class="marker-bubble">
-                            <img class="marker-bubble-img" src="/icon_view_biet_thu.jpg"}/>
+                            <img class="marker-bubble-img" src="${require("/assets/icon_view_biet_thu.jpg")}"}/>
                           </div>
                           <div class="marker-label">View biệt thự</div>
                         </div>
@@ -78,7 +77,7 @@ export default {
                       <div class="marker">
                         <div class="marker-stick">
                           <div class="marker-bubble">
-                            <img class="marker-bubble-img" src="/icon_view_phu_du_an.jpg"}/>
+                            <img class="marker-bubble-img" src="${require("/assets/icon_view_phu_du_an.jpg")}"}/>
                           </div>
                           <div class="marker-label">View phụ dự án</div>
                         </div>
@@ -125,8 +124,7 @@ export default {
               },
               {
                 id: "view_phu_du_an",
-                panorama: "/360_view_phu_du_an.jpg",
-                thumbnail: "/thumb_view_phu_du_an.jpg",
+                panorama: require("/assets/360_view_phu_du_an.jpg"),
                 links: [
                   {
                     nodeId: "view_chinh_du_an",
@@ -137,8 +135,7 @@ export default {
               },
               {
                 id: "view_biet_thu",
-                panorama: "/360_view_biet_thu.jpg",
-                thumbnail: "/thumb_view_biet_thu.jpg",
+                panorama: require("/assets/360_view_biet_thu.jpg"),
                 links: [
                   {
                     nodeId: "view_chinh_du_an",
@@ -149,8 +146,7 @@ export default {
               },
               {
                 id: "cau_my_thuan",
-                panorama: "/360_cau_my_thuan.jpg",
-                thumbnail: "/thumb_cau_my_thuan.jpg",
+                panorama: require("/assets/360_cau_my_thuan.jpg"),
                 links: [
                   {
                     nodeId: "view_chinh_du_an",
@@ -161,8 +157,7 @@ export default {
               },
               {
                 id: "trung_tam_vinh_long",
-                panorama: "/360_trung_tam_vinh_long.jpg",
-                thumbnail: "/thumb_trung_tam_vinh_long.jpg",
+                panorama: require("/assets/360_trung_tam_vinh_long.jpg"),
                 links: [
                   {
                     nodeId: "view_chinh_du_an",
