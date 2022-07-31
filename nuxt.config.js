@@ -36,6 +36,10 @@ export default {
     "@nuxt/image",
   ],
 
+  image: {
+    // Options
+  },
+
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     //
