@@ -1,12 +1,10 @@
 <template>
   <div class="navbar">
-    <div class="carousel_container">
-      <ThumbCarousel
-        :items="this.currentGroup.items"
-        :selected="this.currentView"
-        :onChange="this.onChangeView"
-      />
-    </div>
+    <ThumbCarousel
+      :items="this.currentGroup.items"
+      :selected="this.currentView"
+      :onChange="this.onChangeView"
+    />
     <div class="action">
       <button @click="this.onFullscreen" class="btn">
         <i class="material-icons md-36">aspect_ratio</i>
