@@ -27,9 +27,7 @@ export default {
     return {
       viewer: typeof Viewer,
       tour: undefined,
-      options: {
-        preset: "panorama",
-      },
+      modifiers: { width: 6000, height: 3000, loading: "lazy" },
     };
   },
 
@@ -50,7 +48,10 @@ export default {
             nodes: [
               {
                 id: "view_chinh_du_an",
-                panorama: require("~/assets/360_view_chinh_du_an.webp"),
+                panorama: this.$img(
+                  "/360_view_chinh_du_an.webp",
+                  this.modifiers
+                ),
                 links: [
                   {
                     nodeId: "view_biet_thu",
@@ -127,7 +128,7 @@ export default {
               },
               {
                 id: "view_phu_du_an",
-                panorama: require("~/assets/360_view_phu_du_an.webp"),
+                panorama: this.$img("/360_view_phu_du_an.webp", this.modifiers),
                 links: [
                   {
                     nodeId: "view_chinh_du_an",
@@ -138,7 +139,7 @@ export default {
               },
               {
                 id: "view_biet_thu",
-                panorama: require("~/assets/360_view_biet_thu.webp"),
+                panorama: this.$img("/360_view_biet_thu.webp", this.modifiers),
                 links: [
                   {
                     nodeId: "view_chinh_du_an",
@@ -149,7 +150,7 @@ export default {
               },
               {
                 id: "cau_my_thuan",
-                panorama: require("~/assets/360_cau_my_thuan.webp"),
+                panorama: this.$img("/360_cau_my_thuan.webp", this.modifiers),
                 links: [
                   {
                     nodeId: "view_chinh_du_an",
@@ -160,7 +161,10 @@ export default {
               },
               {
                 id: "trung_tam_vinh_long",
-                panorama: require("~/assets/360_trung_tam_vinh_long.webp"),
+                panorama: this.$img(
+                  "/360_trung_tam_vinh_long.webp",
+                  this.modifiers
+                ),
                 links: [
                   {
                     nodeId: "view_chinh_du_an",
