@@ -20,22 +20,27 @@ export default {
       {
         rel: "preload",
         href: "/360_view_chinh_du_an.jpg",
+        as: "image",
       },
       {
         rel: "preload",
         href: "/360_view_phu_du_an.jpg",
+        as: "image",
       },
       {
         rel: "preload",
         href: "/360_view_biet_thu.jpg",
+        as: "image",
       },
       {
         rel: "preload",
         href: "/360_cau_my_thuan.jpg",
+        as: "image",
       },
       {
         rel: "preload",
         href: "/360_trung_tam_vinh_long.jpg",
+        as: "image",
       },
     ],
   },
