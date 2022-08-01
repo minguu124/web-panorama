@@ -65,8 +65,8 @@ export default {
     },
   },
 
-  target: "static",
-  router: {
-    base: "/web-360-demo/",
-  },
+  // target: "static",
+  // router: {
+  //   base: "/web-panorama/",
+  // },
 };
