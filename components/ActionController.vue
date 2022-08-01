@@ -37,7 +37,6 @@
 </template>
 
 <script>
-import { isUndefined } from "util";
 import ThumbCarousel from "./ThumbCarousel.vue";
 export default {
   components: {

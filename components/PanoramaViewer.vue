@@ -50,7 +50,7 @@ export default {
             nodes: [
               {
                 id: "view_chinh_du_an",
-                panorama: this.$img("/360_view_chinh_du_an.jpg", this.options),
+                panorama: "/360_view_chinh_du_an.jpg",
                 links: [
                   {
                     nodeId: "view_biet_thu",
@@ -127,7 +127,7 @@ export default {
               },
               {
                 id: "view_phu_du_an",
-                panorama: this.$img("/360_view_phu_du_an.jpg", this.options),
+                panorama: "/360_view_phu_du_an.jpg",
                 links: [
                   {
                     nodeId: "view_chinh_du_an",
@@ -138,7 +138,7 @@ export default {
               },
               {
                 id: "view_biet_thu",
-                panorama: this.$img("/360_view_biet_thu.jpg", this.options),
+                panorama: "/360_view_biet_thu.jpg",
                 links: [
                   {
                     nodeId: "view_chinh_du_an",
@@ -149,7 +149,7 @@ export default {
               },
               {
                 id: "cau_my_thuan",
-                panorama: this.$img("/360_cau_my_thuan.jpg", this.options),
+                panorama: "/360_cau_my_thuan.jpg",
                 links: [
                   {
                     nodeId: "view_chinh_du_an",
@@ -160,10 +160,7 @@ export default {
               },
               {
                 id: "trung_tam_vinh_long",
-                panorama: this.$img(
-                  "/360_trung_tam_vinh_long.jpg",
-                  this.options
-                ),
+                panorama: "/360_trung_tam_vinh_long.jpg",
                 links: [
                   {
                     nodeId: "view_chinh_du_an",

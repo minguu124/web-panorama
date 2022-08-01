@@ -17,6 +17,26 @@ export default {
         rel: "stylesheet",
         href: "https://fonts.googleapis.com/icon?family=Material+Icons",
       },
+      {
+        rel: "preload",
+        href: "/360_view_chinh_du_an.jpg",
+      },
+      {
+        rel: "preload",
+        href: "/360_view_phu_du_an.jpg",
+      },
+      {
+        rel: "preload",
+        href: "/360_view_biet_thu.jpg",
+      },
+      {
+        rel: "preload",
+        href: "/360_cau_my_thuan.jpg",
+      },
+      {
+        rel: "preload",
+        href: "/360_trung_tam_vinh_long.jpg",
+      },
     ],
   },
 
