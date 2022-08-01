@@ -27,7 +27,7 @@ export default {
     return {
       viewer: typeof Viewer,
       tour: undefined,
-      modifiers: { width: 6000, height: 3000, loading: "lazy" },
+      // modifiers: { width: 6000, height: 3000, loading: "lazy" },
     };
   },
 
@@ -48,10 +48,7 @@ export default {
             nodes: [
               {
                 id: "view_chinh_du_an",
-                panorama: this.$img(
-                  "/360_view_chinh_du_an.webp",
-                  this.modifiers
-                ),
+                panorama: "/360_view_chinh_du_an.webp",
                 links: [
                   {
                     nodeId: "view_biet_thu",
@@ -128,7 +125,7 @@ export default {
               },
               {
                 id: "view_phu_du_an",
-                panorama: this.$img("/360_view_phu_du_an.webp", this.modifiers),
+                panorama: "/360_view_phu_du_an.webp",
                 links: [
                   {
                     nodeId: "view_chinh_du_an",
@@ -139,7 +136,7 @@ export default {
               },
               {
                 id: "view_biet_thu",
-                panorama: this.$img("/360_view_biet_thu.webp", this.modifiers),
+                panorama: "/360_view_biet_thu.webp",
                 links: [
                   {
                     nodeId: "view_chinh_du_an",
@@ -150,7 +147,7 @@ export default {
               },
               {
                 id: "cau_my_thuan",
-                panorama: this.$img("/360_cau_my_thuan.webp", this.modifiers),
+                panorama: "/360_cau_my_thuan.webp",
                 links: [
                   {
                     nodeId: "view_chinh_du_an",
@@ -161,10 +158,7 @@ export default {
               },
               {
                 id: "trung_tam_vinh_long",
-                panorama: this.$img(
-                  "/360_trung_tam_vinh_long.webp",
-                  this.modifiers
-                ),
+                panorama: "/360_trung_tam_vinh_long.webp",
                 links: [
                   {
                     nodeId: "view_chinh_du_an",
