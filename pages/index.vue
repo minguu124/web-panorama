@@ -1,5 +1,10 @@
 <template>
   <div id="app">
+    <nuxt-img src="/360_chinh_phu_du_an.jpg" class="hidden" />
+    <nuxt-img src="/360_view_phu_du_an.jpg" class="hidden" />
+    <nuxt-img src="/360_cau_my_thuan.jpg" class="hidden" />
+    <nuxt-img src="/360_trung_tam_vinh_long.jpg" class="hidden" />
+    <nuxt-img src="/360_view_biet_thu.jpg" class="hidden" />
     <PanoramaViewer ref="panoramaViewer" :currentView="this.selectedView" />
     <ActionController
       :data="this.data"

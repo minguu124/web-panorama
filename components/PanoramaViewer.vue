@@ -28,10 +28,7 @@ export default {
       viewer: typeof Viewer,
       tour: undefined,
       options: {
-        modifiers: {
-          width: 6000,
-          height: 3000,
-        },
+        preset: "panorama",
       },
     };
   },

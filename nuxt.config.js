@@ -36,7 +36,14 @@ export default {
   ],
 
   image: {
-    // Options
+    presets: {
+      panorama: {
+        modifiers: {
+          width: 6000,
+          height: 3000,
+        },
+      },
+    },
   },
 
   // Modules: https://go.nuxtjs.dev/config-modules
