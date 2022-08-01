@@ -6,7 +6,7 @@
         v-for="item in items"
         :key="item.id"
         class="carousel-item"
-        :class="{ active: item.id === selected?.id }"
+        :class="{ active: item.id === currentView }"
       >
         <nuxt-img v-bind:src="item.imgThumb" class="carousel-item-image" />
       </li>
@@ -15,19 +15,35 @@
 </template>
 
 <script>
+import { THUMBS, TONG_QUAN_THUMB } from "@/constants/data";
 export default {
   props: {
-    items: Array,
-    selected: Object,
-    onChange: Function,
     shouldDisplay: Boolean,
+  },
+  computed: {
+    currentView() {
+      return this.$store.state.currentView;
+    },
+    currentMode() {
+      return this.$store.state.currentMode;
+    },
+  },
+
+  methods: {
+    onChange(view) {
+      this.$store.commit("setView", view.id);
+    },
+  },
+  watch: {
+    currentMode: function (newVal) {
+      this.items = THUMBS[newVal];
+    },
   },
   data() {
     return {
       slider: undefined,
-      carousel: {
-        isDown: false,
-      },
+      items: TONG_QUAN_THUMB,
+      carousel: { isDown: false },
     };
   },
   mounted() {

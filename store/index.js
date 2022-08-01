@@ -1,25 +1,34 @@
 export const state = () => ({
   isSoundEnabled: true,
-  currentGroup: "tong_quan",
+  currentMode: "tong_quan",
   currentView: "view_chinh_du_an",
 });
 
 export const mutations = {
-  toggleSound(state) {
-    state.isSoundEnabled = !state.isSoundEnabled;
-    localStorage.setItem("isSoundEnabled", state.isSoundEnabled);
+  setMode(state, mode) {
+    state.currentMode = mode;
+    localStorage.setItem("currentMode", mode);
   },
-  initializeSound(state) {
-    const isSoundEnabled = JSON.parse(localStorage.getItem("isSoundEnabled"));
-    if (!isSoundEnabled) {
-      state.isSoundEnabled = false;
-      localStorage.setItem("isSoundEnabled", false);
-    } else if (isSoundEnabled) {
-      state.isSoundEnabled = true;
-      localStorage.setItem("isSoundEnabled", true);
+  setView(state, view) {
+    state.currentView = view;
+    localStorage.setItem("currentView", view);
+  },
+  initializeState(state) {
+    const currentMode = localStorage.getItem("currentMode");
+    const currentView = localStorage.getItem("currentView");
+
+    if (!currentMode) {
+      state.currentMode = "tong_quan";
+      localStorage.setItem("currentMode", "tong_quan");
     } else {
-      state.isSoundEnabled = true;
-      localStorage.setItem("isSoundEnabled", true);
+      state.currentMode = currentMode;
+    }
+
+    if (!currentView) {
+      state.currentView = "view_chinh_du_an";
+      localStorage.setItem("currentView", "view_chinh_du_an");
+    } else {
+      state.currentView = currentView;
     }
   },
 };

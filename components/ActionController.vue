@@ -1,11 +1,6 @@
 <template>
   <div class="navbar">
-    <ThumbCarousel
-      :shouldDisplay="this.shouldDisplayCarousel"
-      :items="this.currentGroup.items"
-      :selected="this.currentView"
-      :onChange="this.onChangeView"
-    />
+    <ThumbCarousel :shouldDisplay="this.shouldDisplayCarousel" />
     <div class="action">
       <button @click="this.onFullscreen" class="btn">
         <i v-if="!this.isFullscreen" class="material-icons md-48">fullscreen</i>
@@ -22,8 +17,20 @@
         >
       </button>
       <div class="menu_button_container">
-        <button class="menu_button">Tổng quan</button>
-        <button class="menu_button">Tiện ích</button>
+        <button
+          class="menu_button"
+          :class="{ active: currentMode === 'tong_quan' }"
+          @click="onClickMode('tong_quan')"
+        >
+          Tổng quan
+        </button>
+        <button
+          class="menu_button"
+          :class="{ active: currentMode === 'tien_ich' }"
+          @click="onClickMode('tien_ich')"
+        >
+          Tiện ích
+        </button>
         <button class="menu_button">Căn hộ mẫu</button>
       </div>
       <button class="btn">
@@ -48,15 +55,11 @@ export default {
     ThumbCarousel,
   },
   computed: {
-    isSoundEnabled() {
-      return this.$store.state.isSoundEnabled;
+    currentMode() {
+      return this.$store.state.currentMode;
     },
   },
   methods: {
-    onChangeImage(value) {
-      this.selectedImage = value;
-      this.onChangeImageAction(value);
-    },
     onFullscreen() {
       const el = this.container;
       if (this.isFullscreen) {
@@ -84,6 +87,9 @@ export default {
     togglePlayAudio() {
       this.shouldPlayAudio = !this.shouldPlayAudio;
     },
+    onClickMode(mode) {
+      this.$store.commit("setMode", mode);
+    },
   },
   data() {
     return {
@@ -102,13 +108,6 @@ export default {
         this.audio.pause();
       }
     },
-  },
-  props: {
-    data: Object,
-    currentGroup: Object,
-    currentView: Object,
-    onChangeGroup: Function,
-    onChangeView: Function,
   },
   mounted() {
     this.container = document.getElementById("app");
@@ -177,8 +176,13 @@ img {
   font-size: 14px;
   background-color: lightgrey;
   color: rgb(146, 100, 60);
+  transition: all 0.2s;
 }
 .menu_button:hover {
+  transform: scale(1.1);
+}
+
+.menu_button.active {
   background-color: white;
 }
 

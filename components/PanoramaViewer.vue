@@ -7,28 +7,36 @@ import { Viewer } from "photo-sphere-viewer";
 import { MarkersPlugin } from "photo-sphere-viewer/dist/plugins/markers";
 import { VirtualTourPlugin } from "photo-sphere-viewer/dist/plugins/virtual-tour";
 import { CompassPlugin } from "photo-sphere-viewer/dist/plugins/compass";
+import { NODES } from "@/constants/data.js";
 import "photo-sphere-viewer/dist/photo-sphere-viewer.css";
 import "photo-sphere-viewer/dist/plugins/markers.css";
 import "photo-sphere-viewer/dist/plugins/virtual-tour.css";
 import "photo-sphere-viewer/dist/plugins/compass.css";
 
 export default {
-  expose: ["viewer"],
-  props: {
-    currentView: Object,
-  },
-  watch: {
-    currentView: function (newVal, prevVal) {
-      if (newVal === prevVal) return;
-      this.tour.setCurrentNode(newVal.id);
-    },
-  },
   data() {
     return {
       viewer: typeof Viewer,
       tour: undefined,
-      // modifiers: { width: 6000, height: 3000, loading: "lazy" },
     };
+  },
+
+  computed: {
+    currentView() {
+      return this.$store.state.currentView;
+    },
+    currentMode() {
+      return this.$store.state.currentMode;
+    },
+  },
+
+  watch: {
+    currentView: function (newVal) {
+      this.tour?.setCurrentNode(newVal);
+    },
+    currentMode: function (newVal) {
+      this.tour?.setNodes(NODES[newVal]);
+    },
   },
 
   mounted() {
@@ -45,129 +53,7 @@ export default {
             dataMode: VirtualTourPlugin.MODE_CLIENT,
             positionMode: VirtualTourPlugin.MODE_MANUAL,
             renderMode: VirtualTourPlugin.MODE_MARKERS,
-            nodes: [
-              {
-                id: "view_chinh_du_an",
-                panorama: "/360_view_chinh_du_an.webp",
-                links: [
-                  {
-                    nodeId: "view_biet_thu",
-                    longitude: "56deg",
-                    latitude: "-12deg",
-                    markerStyle: {
-                      scale: [1, 1.5, 2],
-                      html: `
-                      <div class="marker">
-                        <div class="marker-stick">
-                          <div class="marker-bubble">
-                            <img class="marker-bubble-img" src="/icon_view_biet_thu.jpg"}/>
-                          </div>
-                          <div class="marker-label">View biệt thự</div>
-                        </div>
-                      </div>
-                      `,
-                    },
-                  },
-                  {
-                    nodeId: "view_phu_du_an",
-                    longitude: "54deg",
-                    latitude: "-33.5deg",
-                    markerStyle: {
-                      scale: [1, 1.5, 2],
-                      html: `
-                      <div class="marker">
-                        <div class="marker-stick">
-                          <div class="marker-bubble">
-                            <img class="marker-bubble-img" src="/icon_view_phu_du_an.jpg"}/>
-                          </div>
-                          <div class="marker-label">View phụ dự án</div>
-                        </div>
-                      </div>`,
-                    },
-                  },
-                  {
-                    nodeId: "trung_tam_vinh_long",
-                    longitude: "100deg",
-                    latitude: "-33.5deg",
-                    markerStyle: {
-                      scale: [1, 1.5, 2],
-                      html: `
-                      <div class="marker"><div class="marker-stick">
-                        <div class="marker-banner">
-                          <div class="marker-banner-icon">
-                            <i class="material-icons md-36">expand_circle_down</i>
-                          </div>
-                          <div class="marker-banner-label">Trung tâm Vĩnh Long</div>
-                        </div>
-                      </div>
-                      `,
-                    },
-                  },
-                  {
-                    nodeId: "cau_my_thuan",
-                    longitude: "0deg",
-                    latitude: "-33.5deg",
-                    markerStyle: {
-                      scale: [1, 1.5, 2],
-                      html: `
-                        <div class="marker"><div class="marker-stick">
-                        <div class="marker-banner">
-                          <div class="marker-banner-icon">
-                            <i class="material-icons md-36">expand_circle_down</i>
-                          </div>
-                          <div class="marker-banner-label">Cầu Mỹ Thuận</div>
-                        </div>
-                      </div>
-                      `,
-                    },
-                  },
-                ],
-              },
-              {
-                id: "view_phu_du_an",
-                panorama: "/360_view_phu_du_an.webp",
-                links: [
-                  {
-                    nodeId: "view_chinh_du_an",
-                    x: 1500,
-                    y: 780,
-                  },
-                ],
-              },
-              {
-                id: "view_biet_thu",
-                panorama: "/360_view_biet_thu.webp",
-                links: [
-                  {
-                    nodeId: "view_chinh_du_an",
-                    x: 1500,
-                    y: 780,
-                  },
-                ],
-              },
-              {
-                id: "cau_my_thuan",
-                panorama: "/360_cau_my_thuan.webp",
-                links: [
-                  {
-                    nodeId: "view_chinh_du_an",
-                    x: 1500,
-                    y: 780,
-                  },
-                ],
-              },
-              {
-                id: "trung_tam_vinh_long",
-                panorama: "/360_trung_tam_vinh_long.webp",
-                links: [
-                  {
-                    nodeId: "view_chinh_du_an",
-                    x: 1500,
-                    y: 780,
-                  },
-                ],
-              },
-            ],
+            nodes: NODES["tong_quan"],
           },
         ],
       ],
