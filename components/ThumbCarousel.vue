@@ -1,5 +1,5 @@
 <template>
-  <main>
+  <main :class="{ hidden: !this.shouldDisplay }">
     <ul class="carousel" id="carousel">
       <li
         @click="onChange(item)"
@@ -9,7 +9,6 @@
         :class="{ active: item.id === selected?.id }"
       >
         <nuxt-img v-bind:src="item.imgThumb" class="carousel-item-image" />
-        <div>{{ item.label }}</div>
       </li>
     </ul>
   </main>
@@ -21,6 +20,7 @@ export default {
     items: Array,
     selected: Object,
     onChange: Function,
+    shouldDisplay: Boolean,
   },
   data() {
     return {
@@ -69,6 +69,8 @@ export default {
 <style>
 main {
   display: flex;
+  flex: 1;
+  border: 1px solid burlywood;
 }
 
 ul li {
@@ -109,6 +111,7 @@ ul li:last-child {
   width: 128px;
   font-size: 0px;
   opacity: 0.5;
+  height: 88px;
   justify-content: center;
   align-items: center;
   transition: all 0.2s;
@@ -123,7 +126,12 @@ ul li:last-child {
 }
 
 .carousel-item-image {
-  width: 100%;
   margin: 0;
+  width: fit-content;
+}
+
+.carousel-item-label {
+  position: absolute;
+  bottom: 4px;
 }
 </style>

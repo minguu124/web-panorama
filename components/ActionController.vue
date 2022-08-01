@@ -1,38 +1,43 @@
 <template>
   <div class="navbar">
     <ThumbCarousel
+      :shouldDisplay="this.shouldDisplayCarousel"
       :items="this.currentGroup.items"
       :selected="this.currentView"
       :onChange="this.onChangeView"
     />
     <div class="action">
       <button @click="this.onFullscreen" class="btn">
-        <i class="material-icons md-36">aspect_ratio</i>
+        <i v-if="!this.isFullscreen" class="material-icons md-48">fullscreen</i>
+        <i v-if="this.isFullscreen" class="material-icons md-48"
+          >fullscreen_exit</i
+        >
       </button>
-      <button class="btn">
-        <i class="material-icons md-36">expand_circle_down</i>
+      <button class="btn" @click="this.toggleDisplayCarousel">
+        <i v-if="!this.shouldDisplayCarousel" class="material-icons md-48"
+          >arrow_circle_up</i
+        >
+        <i v-if="this.shouldDisplayCarousel" class="material-icons md-48"
+          >arrow_circle_down</i
+        >
       </button>
       <div class="menu_button_container">
-        <button
-          class="menu_button"
-          v-for="item in data"
-          :key="item.label"
-          v-on:click="onChangeGroup(item)"
-        >
-          {{ item.label }}
-        </button>
+        <button class="menu_button">Tổng quan</button>
+        <button class="menu_button">Tiện ích</button>
+        <button class="menu_button">Căn hộ mẫu</button>
       </div>
       <button class="btn">
-        <i class="material-icons md-36">cameraswitch</i>
+        <i class="material-icons md-48">cameraswitch</i>
       </button>
       <button class="btn">
-        <i class="material-icons md-36">volume_up</i>
+        <i class="material-icons md-48">volume_up</i>
       </button>
     </div>
   </div>
 </template>
 
 <script>
+import { isUndefined } from "util";
 import ThumbCarousel from "./ThumbCarousel.vue";
 export default {
   components: {
@@ -44,35 +49,37 @@ export default {
       this.onChangeImageAction(value);
     },
     onFullscreen() {
-      const elem = this.container;
+      const el = this.container;
       if (this.isFullscreen) {
         if (document.exitFullscreen) {
           document.exitFullscreen();
         } else if (document.webkitExitFullscreen) {
-          /* Safari */
           document.webkitExitFullscreen();
         } else if (document.msExitFullscreen) {
-          /* IE11 */
           document.msExitFullscreen();
         }
       } else {
-        if (elem.requestFullscreen) {
-          elem.requestFullscreen();
-        } else if (elem.webkitRequestFullscreen) {
-          /* Safari */
-          elem.webkitRequestFullscreen();
-        } else if (elem.msRequestFullscreen) {
-          /* IE11 */
-          elem.msRequestFullscreen();
+        if (el.requestFullscreen) {
+          el.requestFullscreen();
+        } else if (el.webkitRequestFullscreen) {
+          el.webkitRequestFullscreen();
+        } else if (el.msRequestFullscreen) {
+          el.msRequestFullscreen();
         }
       }
       return (this.isFullscreen = !this.isFullscreen);
+    },
+    toggleDisplayCarousel() {
+      this.shouldDisplayCarousel = !this.shouldDisplayCarousel;
     },
   },
   data() {
     return {
       container: undefined,
       isFullscreen: false,
+      shouldDisplayCarousel: true,
+      audio: undefined,
+      isPlayingAudio: true,
     };
   },
   props: {
@@ -84,6 +91,7 @@ export default {
   },
   mounted() {
     this.container = document.getElementById("app");
+    this.audio = new Audio("/sound.mp3");
   },
 };
 </script>

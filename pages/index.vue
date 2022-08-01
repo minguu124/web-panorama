@@ -37,6 +37,9 @@ export default {
       selectedView: DATA["tong_quan"].items[0],
     };
   },
+  mounted() {
+    this.$store.commit("initializeSound");
+  },
 };
 </script>
 
@@ -46,7 +49,16 @@ div {
   display: flex;
 }
 
-img {
+img,
+nuxt-image {
   pointer-events: none;
+}
+
+i {
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 </style>
