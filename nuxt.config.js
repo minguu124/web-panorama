@@ -64,10 +64,4 @@ export default {
       });
     },
   },
-
-  // target: "static",
-
-  // router: {
-  //   base: "/web-panorama/",
-  // },
 };

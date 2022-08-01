@@ -29,8 +29,13 @@
       <button class="btn">
         <i class="material-icons md-48">cameraswitch</i>
       </button>
-      <button class="btn">
-        <i class="material-icons md-48">volume_up</i>
+      <button class="btn" @click="this.togglePlayAudio">
+        <i class="material-icons md-48" v-if="this.shouldPlayAudio"
+          >volume_up</i
+        >
+        <i v-if="!this.shouldPlayAudio" class="material-icons md-48"
+          >volume_off</i
+        >
       </button>
     </div>
   </div>
@@ -41,6 +46,11 @@ import ThumbCarousel from "./ThumbCarousel.vue";
 export default {
   components: {
     ThumbCarousel,
+  },
+  computed: {
+    isSoundEnabled() {
+      return this.$store.state.isSoundEnabled;
+    },
   },
   methods: {
     onChangeImage(value) {
@@ -71,15 +81,27 @@ export default {
     toggleDisplayCarousel() {
       this.shouldDisplayCarousel = !this.shouldDisplayCarousel;
     },
+    togglePlayAudio() {
+      this.shouldPlayAudio = !this.shouldPlayAudio;
+    },
   },
   data() {
     return {
-      container: undefined,
+      container: null,
+      audio: null,
       isFullscreen: false,
       shouldDisplayCarousel: true,
-      audio: undefined,
-      isPlayingAudio: true,
+      shouldPlayAudio: true,
     };
+  },
+  watch: {
+    shouldPlayAudio: function (val) {
+      if (val) {
+        this.audio.play();
+      } else {
+        this.audio.pause();
+      }
+    },
   },
   props: {
     data: Object,
@@ -91,6 +113,14 @@ export default {
   mounted() {
     this.container = document.getElementById("app");
     this.audio = new Audio("/sound.mp3");
+    this.audio.addEventListener("canplaythrough", () =>
+      this.audio.play().catch((e) =>
+        window.addEventListener("click", () => this.audio.play(), {
+          once: true,
+        })
+      )
+    );
+    this.audio.addEventListener("ended", () => this.play(), false);
   },
 };
 </script>
@@ -125,8 +155,12 @@ export default {
   background-color: transparent;
   border: 0;
   color: #fff;
-  font-size: 24px;
-  margin: 0px 8px;
+  margin: 0 4px;
+  padding: 2px;
+  transition: all 0.2s;
+}
+.btn:hover {
+  transform: scale(1.3);
 }
 img {
   width: 20%;
