@@ -12,7 +12,11 @@ export default {
       { name: "format-detection", content: "telephone=no" },
     ],
     link: [
-      { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
+      {
+        rel: "icon",
+        type: "image/x-icon",
+        href: "/web-panorama-static/favicon.ico",
+      },
       {
         rel: "stylesheet",
         href: "https://fonts.googleapis.com/icon?family=Material+Icons",
@@ -33,6 +37,7 @@ export default {
   buildModules: [
     // https://go.nuxtjs.dev/tailwindcss
     "@nuxtjs/tailwindcss",
+    "@nuxt/image",
   ],
 
   image: {
@@ -47,10 +52,10 @@ export default {
   },
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: [
-    //
-    "@nuxt/image",
-  ],
+  // modules: [
+  //   //
+  //   "@nuxt/image",
+  // ],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
@@ -65,8 +70,8 @@ export default {
     },
   },
 
-  // target: "static",
-  // router: {
-  //   base: "/web-panorama/",
-  // },
+  target: "static",
+  router: {
+    base: "/web-panorama-static/",
+  },
 };

@@ -1,3 +1,5 @@
+export const BASE = "/web-panorama-static";
+
 export const TONG_QUAN_THUMB = [
   {
     id: "view_chinh_du_an",
@@ -25,7 +27,7 @@ export const TONG_QUAN_THUMB = [
 export const TONG_QUAN_NODE = [
   {
     id: "view_chinh_du_an",
-    panorama: "/360_view_chinh_du_an.webp",
+    panorama: BASE + "/360_view_chinh_du_an.webp",
     links: [
       {
         nodeId: "view_biet_thu",
@@ -37,7 +39,7 @@ export const TONG_QUAN_NODE = [
           <div class="marker">
             <div class="marker-stick">
               <div class="marker-bubble">
-                <img class="marker-bubble-img" src="/icon_view_biet_thu.jpg"}/>
+                <img class="marker-bubble-img" src="${BASE}/icon_view_biet_thu.jpg"}/>
               </div>
               <div class="marker-label">View biệt thự</div>
             </div>
@@ -55,7 +57,7 @@ export const TONG_QUAN_NODE = [
           <div class="marker">
             <div class="marker-stick">
               <div class="marker-bubble">
-                <img class="marker-bubble-img" src="/icon_view_phu_du_an.jpg"}/>
+                <img class="marker-bubble-img" src="${BASE}/icon_view_phu_du_an.jpg"}/>
               </div>
               <div class="marker-label">View phụ dự án</div>
             </div>
@@ -102,7 +104,7 @@ export const TONG_QUAN_NODE = [
   },
   {
     id: "view_phu_du_an",
-    panorama: "/360_view_phu_du_an.webp",
+    panorama: BASE + "/360_view_phu_du_an.webp",
     links: [
       {
         nodeId: "view_chinh_du_an",
@@ -113,7 +115,7 @@ export const TONG_QUAN_NODE = [
   },
   {
     id: "view_biet_thu",
-    panorama: "/360_view_biet_thu.webp",
+    panorama: BASE + "/360_view_biet_thu.webp",
     links: [
       {
         nodeId: "view_chinh_du_an",
@@ -124,7 +126,7 @@ export const TONG_QUAN_NODE = [
   },
   {
     id: "cau_my_thuan",
-    panorama: "/360_cau_my_thuan.webp",
+    panorama: BASE + "/360_cau_my_thuan.webp",
     links: [
       {
         nodeId: "view_chinh_du_an",
@@ -135,7 +137,7 @@ export const TONG_QUAN_NODE = [
   },
   {
     id: "trung_tam_vinh_long",
-    panorama: "/360_trung_tam_vinh_long.webp",
+    panorama: BASE + "/360_trung_tam_vinh_long.webp",
     links: [
       {
         nodeId: "view_chinh_du_an",

@@ -47,6 +47,9 @@
         >
       </button>
     </div>
+    <audio id="myAudio" controls autoplay class="hidden">
+      <source src="/web-panorama-static/sound.mp3" />
+    </audio>
   </div>
 </template>
 
@@ -111,15 +114,15 @@ export default {
   watch: {
     shouldPlayAudio: function (val) {
       if (val) {
-        this.audio.play();
+        this.audio?.play();
       } else {
-        this.audio.pause();
+        this.audio?.pause();
       }
     },
   },
   mounted() {
     this.container = document.getElementById("app");
-    this.audio = new Audio("/sound.mp3");
+    this.audio = document.getElementById("myAudio");
     this.audio.addEventListener("canplaythrough", () =>
       this.audio.play().catch((e) =>
         window.addEventListener("click", () => this.audio.play(), {
@@ -127,7 +130,6 @@ export default {
         })
       )
     );
-    this.audio.addEventListener("ended", () => this.play(), false);
   },
 };
 </script>
