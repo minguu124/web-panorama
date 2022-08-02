@@ -1,5 +1,5 @@
 export const state = () => ({
-  isSoundEnabled: true,
+  isAutoPlaying: false,
   currentMode: "tong_quan",
   currentView: "view_chinh_du_an",
 });
@@ -13,6 +13,17 @@ export const mutations = {
     state.currentView = view;
     localStorage.setItem("currentView", view);
   },
+
+  toggleAutoPlay(state) {
+    state.isAutoPlaying = !state.isAutoPlaying;
+    localStorage.setItem("isAutoPlaying", state.isAutoPlaying);
+  },
+
+  stopAutoplay(state) {
+    state.isAutoPlaying = false;
+    localStorage.setItem("isAutoPlaying", false);
+  },
+
   initializeState(state) {
     const currentMode = localStorage.getItem("currentMode");
     const currentView = localStorage.getItem("currentView");
@@ -30,5 +41,8 @@ export const mutations = {
     } else {
       state.currentView = currentView;
     }
+
+    state.isAutoPlaying = false;
+    localStorage.setItem("isAutoPlaying", false);
   },
 };

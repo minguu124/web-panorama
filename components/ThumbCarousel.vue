@@ -27,11 +27,15 @@ export default {
     currentMode() {
       return this.$store.state.currentMode;
     },
+    isAutoPlaying() {
+      return this.$store.state.isAutoPlaying;
+    },
   },
 
   methods: {
     onChange(view) {
-      this.$store.commit("setView", view.id);
+      if (this.isAutoPlaying) this.$store.commit("stopAutoplay");
+      return this.$store.commit("setView", view.id);
     },
   },
   watch: {

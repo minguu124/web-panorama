@@ -33,8 +33,10 @@
         </button>
         <button class="menu_button">Căn hộ mẫu</button>
       </div>
-      <button class="btn">
-        <i class="material-icons md-48">cameraswitch</i>
+      <button class="btn" @click="this.toggleAutoPlay">
+        <i class="material-icons md-48" :class="{ active: this.isAutoPlaying }"
+          >cameraswitch</i
+        >
       </button>
       <button class="btn" @click="this.togglePlayAudio">
         <i class="material-icons md-48" v-if="this.shouldPlayAudio"
@@ -57,6 +59,9 @@ export default {
   computed: {
     currentMode() {
       return this.$store.state.currentMode;
+    },
+    isAutoPlaying() {
+      return this.$store.state.isAutoPlaying;
     },
   },
   methods: {
@@ -89,6 +94,9 @@ export default {
     },
     onClickMode(mode) {
       this.$store.commit("setMode", mode);
+    },
+    toggleAutoPlay() {
+      this.$store.commit("toggleAutoPlay");
     },
   },
   data() {
@@ -168,15 +176,14 @@ img {
 
 .menu_button {
   text-align: center;
-  vertical-align: middle;
   border: 1px solid #fff;
-  height: 100%;
   width: 30%;
   font-weight: 600;
   font-size: 14px;
   background-color: lightgrey;
   color: rgb(146, 100, 60);
   transition: all 0.2s;
+  opacity: 0.9;
 }
 .menu_button:hover {
   transform: scale(1.1);
@@ -184,10 +191,27 @@ img {
 
 .menu_button.active {
   background-color: white;
+  opacity: 1;
 }
 
 .action {
   padding: 16px;
   border: 1px solid burlywood;
+}
+
+i.active {
+  animation-name: spin;
+  animation-duration: 2000ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 </style>

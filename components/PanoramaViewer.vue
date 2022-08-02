@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import { Viewer } from "photo-sphere-viewer";
+import { Viewer, Animation } from "photo-sphere-viewer";
 import { MarkersPlugin } from "photo-sphere-viewer/dist/plugins/markers";
 import { VirtualTourPlugin } from "photo-sphere-viewer/dist/plugins/virtual-tour";
 import { CompassPlugin } from "photo-sphere-viewer/dist/plugins/compass";
@@ -17,7 +17,12 @@ export default {
   data() {
     return {
       viewer: typeof Viewer,
-      tour: undefined,
+      tour: null,
+      compass: null,
+      autoplay1: null,
+      autoplay2: null,
+      autoplay3: null,
+      marker: null,
     };
   },
 
@@ -28,14 +33,132 @@ export default {
     currentMode() {
       return this.$store.state.currentMode;
     },
+    isAutoPlaying() {
+      return this.$store.state.isAutoPlaying;
+    },
   },
 
   watch: {
     currentView: function (newVal) {
       this.tour?.setCurrentNode(newVal);
+      if (this.isAutoPlaying) {
+        this.autoRotating();
+      }
     },
     currentMode: function (newVal) {
+      if (newVal === "tong_quan") {
+        this.compass?.show();
+      } else if ((newVal = "tien_ich")) {
+        this.compass?.hide();
+      }
+      this.$store.commit("setView", NODES[newVal][0].id);
       this.tour?.setNodes(NODES[newVal]);
+    },
+    isAutoPlaying: function (val) {
+      if (val) {
+        this.autoRotating();
+      } else {
+        this.onClearRotating();
+      }
+    },
+  },
+
+  methods: {
+    intro() {
+      this.viewer.renderer.camera.far *= 2;
+      new Animation({
+        properties: {
+          lat: { start: -Math.PI / 2, end: 0 },
+          long: { start: Math.PI, end: 0 },
+          zoom: { start: 0, end: 50 },
+          fisheye: { start: 4, end: 0 },
+        },
+        duration: 2000,
+        easing: "inOutQuad",
+        onTick: (properties) => {
+          this.viewer.setOption("fisheye", properties.fisheye);
+          this.viewer.rotate({
+            longitude: properties.long,
+            latitude: properties.lat,
+          });
+          this.viewer.zoom(properties.zoom);
+        },
+      });
+    },
+    onClearRotating() {
+      this.autoplay1?.cancel?.();
+      this.autoplay2?.cancel?.();
+      this.autoplay3?.cancel?.();
+    },
+    autoRotating() {
+      const currentPosition = this.viewer.getPosition();
+      const currentZoom = this.viewer.getZoomLevel();
+      const currentNode = NODES[this.currentMode];
+
+      const currentViewIndex = currentNode.findIndex(
+        (x) => x.id === this.currentView
+      );
+      this.autoplay1 = new Animation({
+        properties: {
+          long: { start: currentPosition.longitude, end: Math.PI / 2 },
+          lat: { start: currentPosition.latitude, end: 0 },
+          zoom: { start: currentZoom, end: 10 },
+        },
+        duration: 2000,
+        onTick: (properties) => {
+          this.viewer.rotate({
+            longitude: properties.long,
+            latitude: properties.lat,
+          });
+          this.viewer.zoom(properties.zoom);
+        },
+      });
+      this.autoplay1?.then((completed) => {
+        this.autoplay1 = null;
+        if (!completed) return;
+        this.autoplay2 = new Animation({
+          properties: {
+            long: { start: Math.PI / 2, end: Math.PI * 2.5 },
+            lat: { start: 0, end: 0 },
+          },
+          duration: 12000,
+          onTick: (properties) => {
+            this.viewer.rotate({
+              longitude: properties.long,
+              latitude: properties.lat,
+            });
+          },
+        });
+        this.autoplay2?.then((completed) => {
+          this.autoplay2 = null;
+          if (!completed) return;
+          this.autoplay3 = new Animation({
+            properties: {
+              long: { start: Math.PI * 2.5, end: Math.PI * 2.5 },
+              lat: { start: 0, end: -Math.PI / 2 },
+            },
+            duration: 2000,
+            onTick: (properties) => {
+              this.viewer.rotate({
+                longitude: properties.long,
+                latitude: properties.lat,
+              });
+            },
+          });
+          this.autoplay3?.then((completed) => {
+            this.autoplay3 = null;
+            if (!completed) return;
+            if (currentViewIndex < currentNode.length - 1) {
+              this.$store.commit(
+                "setView",
+                currentNode[currentViewIndex + 1]?.id
+              );
+            } else {
+              this.$store.commit("setView", currentNode[0]?.id);
+            }
+          });
+        });
+      });
     },
   },
 
@@ -62,6 +185,14 @@ export default {
     this.viewer.on("ready", () => {
       this.viewer.navbar.hide();
       this.tour = this.viewer.getPlugin(VirtualTourPlugin);
+      this.compass = this.viewer.getPlugin(CompassPlugin);
+      this.marker = this.viewer.getPlugin(MarkersPlugin);
+      this.viewer.on("click", () => {
+        this.$store.commit("stopAutoplay");
+      });
+
+      this.$store.commit("setView", NODES["tong_quan"][0].id);
+      this.intro();
     });
   },
 };
