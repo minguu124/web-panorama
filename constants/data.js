@@ -56,6 +56,7 @@ export const TONG_QUAN_NODE = [
         id: "nha_pho_lien_ke_1",
         longitude: "70deg",
         latitude: "-16deg",
+        data: { compass: true },
         scale: [1, 1.5, 2],
         html: `
         <div class="marker">
@@ -71,6 +72,7 @@ export const TONG_QUAN_NODE = [
         id: "nha_pho_lien_ke_2",
         longitude: "84deg",
         latitude: "-30deg",
+        data: { compass: true },
         scale: [1, 1.5, 2],
         html: `
         <div class="marker">
@@ -86,6 +88,7 @@ export const TONG_QUAN_NODE = [
         id: "nha_pho_lien_ke_3",
         longitude: "84deg",
         latitude: "-19deg",
+        data: { compass: true },
         scale: [1, 1.5, 2],
         html: `
         <div class="marker">
@@ -101,6 +104,7 @@ export const TONG_QUAN_NODE = [
         id: "song_co_chien",
         longitude: "114deg",
         latitude: "-0.5deg",
+        data: { compass: true },
         scale: [1, 1.5, 2],
         html: `
         <h1 class="marker-text-only">
@@ -112,6 +116,7 @@ export const TONG_QUAN_NODE = [
         id: "duong_pho_co_dieu",
         longitude: "124deg",
         latitude: "-14deg",
+        data: { compass: true },
         scale: [1, 1.5, 2],
         html: `
         <h1 class="marker-text-with-icon">

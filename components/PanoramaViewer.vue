@@ -177,7 +177,7 @@ export default {
       defaultLong: 1.6,
       plugins: [
         MarkersPlugin,
-        [CompassPlugin, { position: "top right" }],
+        [CompassPlugin, { position: "top right", size: "96px" }],
         [
           VirtualTourPlugin,
           {

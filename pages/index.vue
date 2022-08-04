@@ -36,8 +36,9 @@ i {
 }
 .logo {
   position: absolute;
-  left: -32px;
+  left: 8px;
   top: 16px;
   width: 128px;
+  margin-left: 0px;
 }
 </style>
