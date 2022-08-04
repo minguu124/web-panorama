@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import { THUMBS, TONG_QUAN_THUMB } from "@/constants/data";
+import { THUMBS, TONG_QUAN_THUMB } from "@/constants/data.js";
 export default {
   props: {
     shouldDisplay: Boolean,
@@ -91,6 +91,7 @@ main {
   display: flex;
   flex: 1;
   border: 1px solid burlywood;
+  border-radius: 2px 2px 0 0;
 }
 
 ul li {
@@ -152,6 +153,8 @@ ul li:last-child {
 .carousel-item-image {
   margin: 0;
   width: fit-content;
+  object-fit: fill;
+  height: 100%;
 }
 
 .carousel-item-label {

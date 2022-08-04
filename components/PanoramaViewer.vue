@@ -59,6 +59,7 @@ export default {
         this.compass?.hide();
       }
       this.$store.commit("setView", NODES[newVal][0].id);
+      console.log(NODES[newVal]);
       this.tour?.setNodes(NODES[newVal]);
     },
     isAutoPlaying: function (val) {
@@ -76,8 +77,8 @@ export default {
       this.viewer.renderer.camera.far *= 2;
       new Animation({
         properties: {
-          lat: { start: -Math.PI / 2, end: firstLocation.latitude },
-          long: { start: Math.PI, end: firstLocation.longitude },
+          lat: { start: -Math.PI, end: firstLocation.latitude },
+          long: { start: -Math.PI / 3, end: firstLocation.longitude },
           zoom: { start: 0, end: 25 },
           fisheye: { start: 4, end: 0 },
         },
@@ -184,7 +185,7 @@ export default {
             dataMode: VirtualTourPlugin.MODE_CLIENT,
             positionMode: VirtualTourPlugin.MODE_MANUAL,
             renderMode: VirtualTourPlugin.MODE_MARKERS,
-            nodes: NODES["tong_quan"],
+            nodes: NODES[this.currentMode],
             rotateSpeed: false,
           },
         ],
@@ -197,13 +198,12 @@ export default {
       this.compass = this.viewer.getPlugin(CompassPlugin);
       this.marker = this.viewer.getPlugin(MarkersPlugin);
       this.tour.on("node-changed", (e, nodeId, data) => {
-        console.log(nodeId);
         this.$store.commit("setView", nodeId);
       });
       this.viewer.on("click", () => {
         this.$store.commit("stopAutoplay");
       });
-      this.$store.commit("setView", NODES["tong_quan"][0].id);
+      this.$store.commit("setView", NODES[this.currentMode][0].id);
       this.intro();
     });
   },
@@ -298,7 +298,7 @@ i {
   font-weight: 500;
   border-bottom: 2px solid #fff;
 }
-.marker-text-only {
+.marker-song-co-chien {
   font-weight: 900;
   text-shadow: 2px 2px 4px #000000;
   color: #fff;
@@ -309,7 +309,7 @@ i {
   transform: scale(1) rotate(3deg) translate(0px, 0px) skew(15deg, 0deg);
 }
 
-.marker-text-with-icon {
+.marker-duong-pho-co-dieu {
   font-weight: 900;
   text-shadow: 2px 2px 4px #000000;
   color: #fff;

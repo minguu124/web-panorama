@@ -1,11 +1,15 @@
 <template>
-  <button v-on:click="this.onClick" class="header-button">
-    <h1>TOÀN CẢNH DỰ ÁN</h1>
+  <button
+    v-on:click="this.onClick"
+    class="header-button"
+    :class="{ hidden: this.isMobile }"
+  >
+    <h1>{{ label }}</h1>
   </button>
 </template>
 
 <script>
-import { NODES } from "@/constants/data.js";
+import { NODES, HEADER_LABEL } from "@/constants/data.js";
 export default {
   computed: {
     currentView() {
@@ -13,6 +17,21 @@ export default {
     },
     currentMode() {
       return this.$store.state.currentMode;
+    },
+    label() {
+      return HEADER_LABEL[this.currentMode];
+    },
+    isMobile() {
+      if (process.client) {
+        if (window.innerWidth <= 760) {
+          console.log(window.innerWidth);
+          return true;
+        } else {
+          return false;
+        }
+      } else {
+        return true;
+      }
     },
   },
   methods: {

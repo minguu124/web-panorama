@@ -134,7 +134,7 @@ export default {
 .navbar {
   position: absolute;
   bottom: 16px;
-  width: 50%;
+  width: 60%;
   max-width: 720px;
   min-width: 360px;
   background-color: rgb(146, 100, 60, 0.8);
@@ -142,7 +142,6 @@ export default {
   transform: translate(-50%);
   flex-direction: column;
   z-index: 10;
-  border-radius: 4px;
 }
 
 .carousel_container {
@@ -195,6 +194,7 @@ img {
 .action {
   padding: 16px;
   border: 1px solid burlywood;
+  border-radius: 0 0 2px 2px;
 }
 
 i.active {

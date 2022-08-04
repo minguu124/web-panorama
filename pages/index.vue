@@ -3,16 +3,14 @@
     <PanoramaViewer ref="panoramaViewer" />
     <ActionController />
     <HeaderButton />
-    <nuxt-img src="/logo.png" class="logo" />
+    <ViewMap />
+    <nuxt-img src="/logo.webp" class="logo" />
   </div>
 </template>
 
 <script>
 export default {
   name: "IndexPage",
-  mounted() {
-    this.$store.commit("initializeState");
-  },
 };
 </script>
 
@@ -37,7 +35,7 @@ i {
 .logo {
   position: absolute;
   left: 8px;
-  top: 16px;
+  top: 8px;
   width: 128px;
   margin-left: 0px;
 }
