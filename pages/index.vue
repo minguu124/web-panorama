@@ -2,19 +2,14 @@
   <div id="app">
     <PanoramaViewer ref="panoramaViewer" />
     <ActionController />
+    <HeaderButton />
+    <nuxt-img src="/logo.png" class="logo" />
   </div>
 </template>
 
 <script>
-import PanoramaViewer from "@/components/PanoramaViewer.vue";
-import ActionController from "@/components/ActionController.vue";
 export default {
   name: "IndexPage",
-  components: {
-    PanoramaViewer,
-    ActionController,
-  },
-
   mounted() {
     this.$store.commit("initializeState");
   },
@@ -38,5 +33,11 @@ i {
   -webkit-user-select: none;
   -ms-user-select: none;
   user-select: none;
+}
+.logo {
+  position: absolute;
+  left: -32px;
+  top: 16px;
+  width: 128px;
 }
 </style>

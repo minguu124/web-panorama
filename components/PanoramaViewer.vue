@@ -7,7 +7,7 @@ import { Viewer, Animation } from "photo-sphere-viewer";
 import { MarkersPlugin } from "photo-sphere-viewer/dist/plugins/markers";
 import { VirtualTourPlugin } from "photo-sphere-viewer/dist/plugins/virtual-tour";
 import { CompassPlugin } from "photo-sphere-viewer/dist/plugins/compass";
-import { NODES } from "@/constants/data.js";
+import { NODES, DEFAULT_LOCATION } from "@/constants/data.js";
 import "photo-sphere-viewer/dist/photo-sphere-viewer.css";
 import "photo-sphere-viewer/dist/plugins/markers.css";
 import "photo-sphere-viewer/dist/plugins/virtual-tour.css";
@@ -41,9 +41,16 @@ export default {
   watch: {
     currentView: function (newVal) {
       this.tour?.setCurrentNode(newVal);
-      if (this.isAutoPlaying) {
-        this.autoRotating();
-      }
+      this.viewer.animate({
+        ...DEFAULT_LOCATION[newVal],
+        speed: "8rpm",
+        zoom: 25,
+      });
+      setTimeout(() => {
+        if (this.isAutoPlaying) {
+          this.autoRotating();
+        }
+      }, 500);
     },
     currentMode: function (newVal) {
       if (newVal === "tong_quan") {
@@ -65,12 +72,13 @@ export default {
 
   methods: {
     intro() {
+      const firstLocation = DEFAULT_LOCATION["view_chinh_du_an"];
       this.viewer.renderer.camera.far *= 2;
       new Animation({
         properties: {
-          lat: { start: -Math.PI / 2, end: 0 },
-          long: { start: Math.PI, end: 0 },
-          zoom: { start: 0, end: 50 },
+          lat: { start: -Math.PI / 2, end: firstLocation.latitude },
+          long: { start: Math.PI, end: firstLocation.longitude },
+          zoom: { start: 0, end: 25 },
           fisheye: { start: 4, end: 0 },
         },
         duration: 2000,
@@ -177,6 +185,7 @@ export default {
             positionMode: VirtualTourPlugin.MODE_MANUAL,
             renderMode: VirtualTourPlugin.MODE_MARKERS,
             nodes: NODES["tong_quan"],
+            rotateSpeed: false,
           },
         ],
       ],
@@ -187,10 +196,13 @@ export default {
       this.tour = this.viewer.getPlugin(VirtualTourPlugin);
       this.compass = this.viewer.getPlugin(CompassPlugin);
       this.marker = this.viewer.getPlugin(MarkersPlugin);
+      this.tour.on("node-changed", (e, nodeId, data) => {
+        console.log(nodeId);
+        this.$store.commit("setView", nodeId);
+      });
       this.viewer.on("click", () => {
         this.$store.commit("stopAutoplay");
       });
-
       this.$store.commit("setView", NODES["tong_quan"][0].id);
       this.intro();
     });
@@ -199,6 +211,10 @@ export default {
 </script>
 
 <style>
+i {
+  color: #fff;
+}
+
 .viewer {
   width: 100vw;
   height: 100vh;
@@ -242,7 +258,7 @@ export default {
   width: 100%;
   margin: 0;
 }
-.marker-label {
+.marker-bubble-label {
   padding: 4px 12px;
   position: absolute;
   width: max-content;
@@ -271,7 +287,44 @@ export default {
   color: darkred;
 }
 
-i {
+.marker-static {
+  position: absolute;
+  transform: translateX(-50%);
+  width: max-content;
+  color: darkred;
+  background-color: rgb(238, 170, 16);
+  font-size: 12px;
+  padding: 8px 16px;
+  font-weight: 500;
+  border-bottom: 2px solid #fff;
+}
+.marker-text-only {
+  font-weight: 900;
+  text-shadow: 2px 2px 4px #000000;
   color: #fff;
+  -moz-transform: scale(1) rotate(0deg) translate(0px, 0px) skew(15deg, 0deg);
+  -webkit-transform: scale(1) rotate(0deg) translate(0px, 0px) skew(15deg, 0deg);
+  -o-transform: scale(1) rotate(0deg) translate(0px, 0px) skew(15deg, 0deg);
+  -ms-transform: scale(1) rotate(0deg) translate(0px, 0px) skew(15deg, 0deg);
+  transform: scale(1) rotate(3deg) translate(0px, 0px) skew(15deg, 0deg);
+}
+
+.marker-text-with-icon {
+  font-weight: 900;
+  text-shadow: 2px 2px 4px #000000;
+  color: #fff;
+  font-size: 18px;
+  font-style: italic;
+  transform: scale(1) rotate(-12deg) translate(0px, 0px);
+}
+.arrow {
+  margin-right: -16px;
+  vertical-align: middle;
+  color: #000000;
+  font-size: 36px;
+}
+
+.yellow {
+  color: rgb(238, 170, 16);
 }
 </style>

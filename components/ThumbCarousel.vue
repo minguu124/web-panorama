@@ -131,12 +131,16 @@ ul li:last-child {
   width: 128px;
   font-size: 0px;
   opacity: 0.5;
-  height: 88px;
+  height: 86px;
   justify-content: center;
   align-items: center;
   transition: all 0.2s;
   border: 2px solid #fff;
   border-radius: 4px;
+}
+
+.carousel-item:hover {
+  opacity: 0.8;
 }
 
 .carousel-item.active {

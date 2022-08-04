@@ -48,17 +48,13 @@
       </button>
     </div>
     <audio id="myAudio" controls autoplay class="hidden">
-      <source src="/web-panorama-static/sound.mp3" />
+      <source src="/web-panorama-static/sound.mp3" type="audio/mpeg" />
     </audio>
   </div>
 </template>
 
 <script>
-import ThumbCarousel from "./ThumbCarousel.vue";
 export default {
-  components: {
-    ThumbCarousel,
-  },
   computed: {
     currentMode() {
       return this.$store.state.currentMode;
