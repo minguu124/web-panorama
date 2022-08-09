@@ -113,7 +113,7 @@ export default {
           lat: { start: currentPosition.latitude, end: 0 },
           zoom: { start: currentZoom, end: 10 },
         },
-        duration: 2000,
+        duration: 3000,
         onTick: (properties) => {
           this.viewer.rotate({
             longitude: properties.long,
@@ -130,7 +130,7 @@ export default {
             long: { start: Math.PI / 2, end: Math.PI * 2.5 },
             lat: { start: 0, end: 0 },
           },
-          duration: 12000,
+          duration: 15000,
           onTick: (properties) => {
             this.viewer.rotate({
               longitude: properties.long,
@@ -146,7 +146,7 @@ export default {
               long: { start: Math.PI * 2.5, end: Math.PI * 2.5 },
               lat: { start: 0, end: -Math.PI / 2 },
             },
-            duration: 2000,
+            duration: 3000,
             onTick: (properties) => {
               this.viewer.rotate({
                 longitude: properties.long,
@@ -168,6 +168,22 @@ export default {
           });
         });
       });
+    },
+    onHoverMarker(id) {
+      const elementId = id.replace("tour-link-", "");
+      const timeEl = document.querySelector(`#${elementId}_time`);
+      const contentEl = document.querySelector(`#${elementId}_content`);
+      timeEl?.classList?.remove?.("active");
+      contentEl?.classList?.add?.("active");
+    },
+    onLeaveMarker(id) {
+      const elementId = id.replace("tour-link-", "");
+      const timeEl = document.querySelector(`#${elementId}_time`);
+      const contentEl = document.querySelector(`#${elementId}_content`);
+      setTimeout(() => {
+        timeEl?.classList?.add?.("active");
+        contentEl?.classList?.remove?.("active");
+      }, 3000);
     },
   },
 
@@ -200,11 +216,21 @@ export default {
       this.tour.on("node-changed", (e, nodeId, data) => {
         this.$store.commit("setView", nodeId);
       });
-      this.viewer.on("click", () => {
-        this.$store.commit("stopAutoplay");
+      this.marker.on("over-marker", (e, marker) => {
+        this.onHoverMarker(marker.id);
       });
+      this.marker.on("leave-marker", (e, marker) =>
+        this.onLeaveMarker(marker.id)
+      );
+
+      this.viewer.on("click", () => this.$store.commit("stopAutoplay"));
       this.$store.commit("setView", NODES[this.currentMode][0].id);
       this.intro();
+    });
+    this.viewer.on("zoom-updated", (e, level) => {
+      if (level >= 50) {
+        this.viewer.zoom(50);
+      }
     });
   },
 };
@@ -244,7 +270,8 @@ i {
   border-radius: 45px;
   border: 2px solid rgb(238, 170, 16);
   outline: 12px solid rgb(255, 255, 255, 0.4);
-  overflow: hidden;
+  overflow-y: hidden;
+  overflow-x: hidden;
   transition: all 0.25s;
 }
 .marker-bubble:hover {
@@ -282,9 +309,46 @@ i {
 
 .marker-banner-label {
   background-color: #fff;
-  padding: 4px 8px;
+  padding: 4px 32px;
   width: max-content;
+  min-width: 192px;
   color: darkred;
+  font-weight: bold;
+}
+
+.marker-banner-time {
+  width: max-content;
+  padding: 0 16px;
+  background-color: rgb(119, 46, 11, 0.6);
+  position: absolute;
+  color: #fff;
+  font-size: 13px;
+  top: 36px;
+  right: 0;
+  opacity: 1;
+  transition: all 0.5s;
+}
+.marker-banner-time.active {
+  opacity: 0;
+}
+
+.marker-banner-content {
+  position: absolute;
+  background-color: rgb(255, 255, 255, 0.6);
+  top: 32px;
+  padding: 8px;
+  color: rgb(119, 46, 11);
+  font-weight: 500;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  height: 0;
+  transition: all 0.5s;
+  opacity: 0;
+}
+
+.marker-banner-content.active {
+  height: 256px;
+  opacity: 1;
 }
 
 .marker-static {
@@ -317,14 +381,54 @@ i {
   font-style: italic;
   transform: scale(1) rotate(-12deg) translate(0px, 0px);
 }
+
 .arrow {
   margin-right: -16px;
   vertical-align: middle;
   color: #000000;
   font-size: 36px;
+  animation-name: color-transform;
+  animation-iteration-count: infinite;
 }
 
-.yellow {
-  color: rgb(238, 170, 16);
+.arrow.one {
+  animation-delay: 0;
+  animation-duration: 1s;
+}
+.arrow.two {
+  animation-delay: 0.25s;
+  animation-duration: 1s;
+}
+.arrow.three {
+  animation-delay: 0.5s;
+  animation-duration: 1s;
+}
+.arrow.four {
+  animation-delay: 0.75s;
+  animation-duration: 1s;
+}
+
+@keyframes color-transform {
+  from {
+    color: rgb(238, 170, 16);
+  }
+  to {
+    color: #000000;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(119, 46, 11, 0.8);
+  border-radius: 4px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(119, 46, 11);
 }
 </style>

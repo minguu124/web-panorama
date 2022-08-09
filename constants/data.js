@@ -27,23 +27,23 @@ export const TONG_QUAN_THUMB = [
 export const TIEN_ICH_THUMB = [
   {
     id: "tien_ich_1",
-    imgThumb: "/tien_ich_1.webp",
+    imgThumb: "/thumb_tien_ich_1.webp",
   },
   {
     id: "tien_ich_2",
-    imgThumb: "/tien_ich_2.webp",
+    imgThumb: "/thumb_tien_ich_2.webp",
   },
   {
     id: "tien_ich_3",
-    imgThumb: "/tien_ich_3.webp",
+    imgThumb: "/thumb_tien_ich_3.webp",
   },
   {
     id: "tien_ich_4",
-    imgThumb: "/tien_ich_4.webp",
+    imgThumb: "/thumb_tien_ich_4.webp",
   },
   {
     id: "tien_ich_5",
-    imgThumb: "/tien_ich_2.webp",
+    imgThumb: "/thumb_tien_ich_2.webp",
   },
 ];
 
@@ -82,7 +82,7 @@ export const DEFAULT_LOCATION = {
   },
   view_phu_du_an: {
     latitude: -Math.PI / 8,
-    longitude: Math.PI / 2,
+    longitude: Math.PI / 5,
   },
   view_biet_thu: {
     latitude: -Math.PI / 8,
@@ -90,7 +90,7 @@ export const DEFAULT_LOCATION = {
   },
   cau_my_thuan: {
     latitude: -Math.PI / 8,
-    longitude: Math.PI / 5,
+    longitude: Math.PI / 2,
   },
   trung_tam_vinh_long: {
     latitude: -Math.PI / 8,
@@ -137,7 +137,7 @@ export const TONG_QUAN_NODE = [
         longitude: "70deg",
         latitude: "-16deg",
         data: { compass: true },
-        scale: [1, 1.5, 2],
+        scale: [0.75, 2, 2],
         html: `
         <div class="marker">
           <div class="marker-stick">
@@ -153,7 +153,7 @@ export const TONG_QUAN_NODE = [
         longitude: "84deg",
         latitude: "-19deg",
         data: { compass: true },
-        scale: [1, 1.5, 2],
+        scale: [0.75, 2, 2],
         html: `
         <div class="marker">
           <div class="marker-stick">
@@ -169,7 +169,7 @@ export const TONG_QUAN_NODE = [
         longitude: "84deg",
         latitude: "-30deg",
         data: { compass: true },
-        scale: [1, 1.5, 2],
+        scale: [0.75, 2, 2],
         html: `
         <div class="marker">
           <div class="marker-stick">
@@ -185,7 +185,7 @@ export const TONG_QUAN_NODE = [
         longitude: "114deg",
         latitude: "-0.5deg",
         data: { compass: true },
-        scale: [1, 1.5, 2],
+        scale: [0.75, 2, 2],
         html: `
         <h1 class="marker-song-co-chien">
           Sông Cổ Chiên
@@ -197,13 +197,14 @@ export const TONG_QUAN_NODE = [
         longitude: "124deg",
         latitude: "-14deg",
         data: { compass: true },
-        scale: [1, 1.5, 2],
+        scale: [0.75, 2, 2],
         html: `
         <h1 class="marker-duong-pho-co-dieu">
           Đường Phó Cơ Điều
-          <i class="material-icons md-36 arrow">double_arrow</i>
-          <i class="material-icons md-36 arrow yellow">double_arrow</i>
-          <i class="material-icons md-36 arrow">double_arrow</i>
+          <i class="material-icons md-36 arrow one">double_arrow</i>
+          <i class="material-icons md-36 arrow two">double_arrow</i>
+          <i class="material-icons md-36 arrow three">double_arrow</i>
+          <i class="material-icons md-36 arrow four">double_arrow</i>
         </h1>
         `,
       },
@@ -214,7 +215,7 @@ export const TONG_QUAN_NODE = [
         longitude: "60deg",
         latitude: "-10deg",
         markerStyle: {
-          scale: [1, 1.5, 2],
+          scale: [0.75, 2, 2],
           html: `
           <div class="marker">
             <div class="marker-stick">
@@ -232,7 +233,7 @@ export const TONG_QUAN_NODE = [
         longitude: "56deg",
         latitude: "-30deg",
         markerStyle: {
-          scale: [1, 1.5, 2],
+          scale: [0.75, 2, 2],
           html: `
           <div class="marker">
             <div class="marker-stick">
@@ -249,7 +250,7 @@ export const TONG_QUAN_NODE = [
         longitude: "160deg",
         latitude: "-6deg",
         markerStyle: {
-          scale: [1, 1.5, 2],
+          scale: [0.75, 2, 2],
           html: `
           <div class="marker"><div class="marker-stick">
             <div class="marker-banner">
@@ -257,6 +258,28 @@ export const TONG_QUAN_NODE = [
                 <i class="material-icons md-36">expand_circle_down</i>
               </div>
               <div class="marker-banner-label">Trung tâm Vĩnh Long</div>
+              <div id="trung_tam_vinh_long_time" class="marker-banner-time active">15 phút</div>
+              <div id="trung_tam_vinh_long_content" class="marker-banner-content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
+              molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
+              numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium
+              optio, eaque rerum! Provident similique accusantium nemo autem. Veritatis
+              obcaecati tenetur iure eius earum ut molestias architecto voluptate aliquam
+              nihil, eveniet aliquid culpa officia aut! Impedit sit sunt quaerat, odit,
+              tenetur error, harum nesciunt ipsum debitis quas aliquid. Reprehenderit,
+              quia. Quo neque error repudiandae fuga? Ipsa laudantium molestias eos 
+              sapiente officiis modi at sunt excepturi expedita sint? Sed quibusdam
+              recusandae alias error harum maxime adipisci amet laborum. Perspiciatis 
+              minima nesciunt dolorem! Officiis iure rerum voluptates a cumque velit 
+              quibusdam sed amet tempora. Sit laborum ab, eius fugit doloribus tenetur 
+              fugiat, temporibus enim commodi iusto libero magni deleniti quod quam 
+              consequuntur! Commodi minima excepturi repudiandae velit hic maxime
+              doloremque. Quaerat provident commodi consectetur veniam similique ad 
+              earum omnis ipsum saepe, voluptas, hic voluptates pariatur est explicabo 
+              fugiat, dolorum eligendi quam cupiditate excepturi mollitia maiores labore 
+              suscipit quas? Nulla, placeat. Voluptatem quaerat non architecto ab laudantium
+              modi minima sunt esse temporibus sint culpa, recusandae aliquam numquam 
+              totam ratione voluptas quod exercitationem fuga. Possimus quis earum veniam 
+              quasi aliquam eligendi, placeat qui corporis!</div>
             </div>
           </div>
           `,
@@ -267,7 +290,7 @@ export const TONG_QUAN_NODE = [
         longitude: "80deg",
         latitude: "0deg",
         markerStyle: {
-          scale: [1, 1.5, 2],
+          scale: [0.75, 2, 2],
           html: `
             <div class="marker"><div class="marker-stick">
             <div class="marker-banner">
@@ -275,6 +298,28 @@ export const TONG_QUAN_NODE = [
                 <i class="material-icons md-36">expand_circle_down</i>
               </div>
               <div class="marker-banner-label">Cầu Mỹ Thuận</div>
+              <div id="cau_my_thuan_time" class="marker-banner-time active">15 phút</div>
+              <div id="cau_my_thuan_content" class="marker-banner-content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
+              molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
+              numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium
+              optio, eaque rerum! Provident similique accusantium nemo autem. Veritatis
+              obcaecati tenetur iure eius earum ut molestias architecto voluptate aliquam
+              nihil, eveniet aliquid culpa officia aut! Impedit sit sunt quaerat, odit,
+              tenetur error, harum nesciunt ipsum debitis quas aliquid. Reprehenderit,
+              quia. Quo neque error repudiandae fuga? Ipsa laudantium molestias eos 
+              sapiente officiis modi at sunt excepturi expedita sint? Sed quibusdam
+              recusandae alias error harum maxime adipisci amet laborum. Perspiciatis 
+              minima nesciunt dolorem! Officiis iure rerum voluptates a cumque velit 
+              quibusdam sed amet tempora. Sit laborum ab, eius fugit doloribus tenetur 
+              fugiat, temporibus enim commodi iusto libero magni deleniti quod quam 
+              consequuntur! Commodi minima excepturi repudiandae velit hic maxime
+              doloremque. Quaerat provident commodi consectetur veniam similique ad 
+              earum omnis ipsum saepe, voluptas, hic voluptates pariatur est explicabo 
+              fugiat, dolorum eligendi quam cupiditate excepturi mollitia maiores labore 
+              suscipit quas? Nulla, placeat. Voluptatem quaerat non architecto ab laudantium
+              modi minima sunt esse temporibus sint culpa, recusandae aliquam numquam 
+              totam ratione voluptas quod exercitationem fuga. Possimus quis earum veniam 
+              quasi aliquam eligendi, placeat qui corporis!</div>
             </div>
           </div>
           `,
